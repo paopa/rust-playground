@@ -23,3 +23,7 @@ path = "src/binding/main.rs"
 [[bin]]
 name = "destructure"
 path = "src/destructure/main.rs"
+
+[[bin]]
+name = "shadowing"
+path = "src/shadowing/main.rs"
