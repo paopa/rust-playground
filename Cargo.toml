@@ -15,3 +15,7 @@ path = "src/main.rs"
 [[bin]]
 name = "numbers"
 path = "src/basic_type/numbers.rs"
+
+[[bin]]
+name = "binding_var"
+path = "src/binding_var/binding_var.rs"
