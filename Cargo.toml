@@ -19,3 +19,7 @@ path = "src/basic_type/numbers.rs"
 [[bin]]
 name = "binding"
 path = "src/binding/main.rs"
+
+[[bin]]
+name = "destructure"
+path = "src/destructure/main.rs"
