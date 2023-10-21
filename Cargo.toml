@@ -13,14 +13,6 @@ name = "hello-world"
 path = "src/main.rs"
 
 [[bin]]
-name = "integer_overflow"
-path = "src/integer_overflow/main.rs"
-
-[[bin]]
-name = "float_trap"
-path = "src/float_trap/main.rs"
-
-[[bin]]
 name = "binding"
 path = "src/binding/main.rs"
 
@@ -35,3 +27,11 @@ path = "src/shadowing/main.rs"
 [[bin]]
 name = "type_evaluation"
 path = "src/type_evaluation/main.rs"
+
+[[bin]]
+name = "integer_overflow"
+path = "src/integer_overflow/main.rs"
+
+[[bin]]
+name = "float_trap"
+path = "src/float_trap/main.rs"
