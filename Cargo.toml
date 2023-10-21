@@ -17,6 +17,10 @@ name = "integer_overflow"
 path = "src/integer_overflow/main.rs"
 
 [[bin]]
+name = "float_trap"
+path = "src/float_trap/main.rs"
+
+[[bin]]
 name = "binding"
 path = "src/binding/main.rs"
 
