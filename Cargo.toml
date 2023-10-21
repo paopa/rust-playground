@@ -13,6 +13,8 @@ name = "hello-world"
 path = "src/main.rs"
 
 [[bin]]
+name = "integer_overflow"
+path = "src/integer_overflow/main.rs"
 
 [[bin]]
 name = "binding"
