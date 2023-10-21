@@ -13,8 +13,6 @@ name = "hello-world"
 path = "src/main.rs"
 
 [[bin]]
-name = "numbers"
-path = "src/basic_type/numbers.rs"
 
 [[bin]]
 name = "binding"
