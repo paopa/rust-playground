@@ -27,3 +27,7 @@ path = "src/destructure/main.rs"
 [[bin]]
 name = "shadowing"
 path = "src/shadowing/main.rs"
+
+[[bin]]
+name = "type_evaluation"
+path = "src/type_evaluation/main.rs"
