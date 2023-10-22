@@ -43,3 +43,7 @@ path = "src/not_a_number/main.rs"
 [[bin]]
 name = "binding_type"
 path = "src/binding_type/main.rs"
+
+[[bin]]
+name = "bitwise"
+path = "src/bitwise/main.rs"
