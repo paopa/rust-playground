@@ -7,6 +7,7 @@ rust-version = "1.59"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+num = "0.4.0"
 
 [[bin]]
 name = "hello-world"
@@ -51,3 +52,7 @@ path = "src/bitwise/main.rs"
 [[bin]]
 name = "range"
 path = "src/range/main.rs"
+
+[[bin]]
+name = "num_lib"
+path = "src/num_lib/main.rs"
