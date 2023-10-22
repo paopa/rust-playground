@@ -47,3 +47,7 @@ path = "src/binding_type/main.rs"
 [[bin]]
 name = "bitwise"
 path = "src/bitwise/main.rs"
+
+[[bin]]
+name = "range"
+path = "src/range/main.rs"
