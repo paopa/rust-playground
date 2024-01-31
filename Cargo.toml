@@ -14,10 +14,6 @@ name = "hello-world"
 path = "src/main.rs"
 
 [[bin]]
-name = "binding"
-path = "src/binding/main.rs"
-
-[[bin]]
 name = "destructure"
 path = "src/destructure/main.rs"
 
