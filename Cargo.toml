@@ -56,3 +56,7 @@ path = "src/num_lib/main.rs"
 [[bin]]
 name = "char"
 path = "src/char/main.rs"
+
+[[bin]]
+name = "functions"
+path = "src/functions/main.rs"
