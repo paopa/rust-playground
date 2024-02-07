@@ -180,6 +180,27 @@ mod tests {
         let r3 = &mut s; // BIG PROBLEM
         // cannot borrow `s` as mutable reference because it is also borrowed as immutable one
 
-        println!("{}, {}, and {}", r1, r2, r3);
+        // println!("{}, {}, and {}", r1, r2, r3);
+    }
+
+    #[test]
+    fn mutable_references_scope() {
+        let mut s = String::from("hello");
+
+        let r1 = &s; // no problem
+        let r2 = &s; // no problem
+        println!("{} and {}", r1, r2);
+        // variables r1 and r2 will not be used after this point
+
+        let r3 = &mut s; // no problem
+        println!("{}", r3);
+
+        // however, the code below will not compile because r1 and r2 are still in scope
+        // println!("{}, {}, and {}", r1, r2, r3);
+
+        // Even though borrowing errors may be frustrating at times,
+        // remember that it’s the Rust compiler pointing out a potential bug early
+        // (at compile time rather than at runtime) and showing you exactly where the problem is.
+        // Then you don’t have to track down why your data isn’t what you thought it was.
     }
 }
