@@ -203,4 +203,31 @@ mod tests {
         // (at compile time rather than at runtime) and showing you exactly where the problem is.
         // Then you don’t have to track down why your data isn’t what you thought it was.
     }
+
+    // Dangling References
+    // A dangling reference is a pointer that references a location in memory that may have been given to someone else,
+    // by freeing some memory while preserving a pointer to that memory.
+    // In Rust, the compiler guarantees that references will never be dangling references:
+    // if you have a reference to some data, the compiler will ensure that the data will not
+    // go out of scope before the reference to the data does.
+    #[test]
+    fn dangling_references() {
+        // let reference_to_nothing = dangle();
+        // println!("{}", reference_to_nothing);
+        //  ^^ borrowed value does not live long enough
+
+        let s = no_dangle();
+        println!("{}", s);
+    }
+
+    // fn dangle() -> &String {
+    //     // This function's return type contains a borrowed value, but there is no value to be borrowed
+    //     let s = String::from("hello"); // s is a new String
+    //     &s // we return a reference to the String, s
+    // } // Here, s goes out of scope, and is dropped. Its memory goes away.
+
+    fn no_dangle() -> String {
+        let s = String::from("hello");
+        s
+    }
 }
