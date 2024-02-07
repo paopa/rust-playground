@@ -159,11 +159,27 @@ mod tests {
     fn multiple_mutable_references() {
         let mut s = String::from("hello");
         let r1 = &mut s;
-        let r2 = &mut s; // This line will not compile
+        // let r2 = &mut s; // This line will not compile
         //  cannot borrow `s` as mutable more than once at a time
         // the benefit of having this restriction is that Rust can prevent data races at compile time.
-        
+        // A data race is similar to a race condition and happens when these three behaviors occur:
+        // - Two or more pointers access the same data at the same time.
+        // - At least one of the pointers is being used to write to the data.
+        // - There’s no mechanism being used to synchronize access to the data.
 
-        println!("{}, {}", r1, r2);
+        // Rust prevents this problem by refusing to compile code with data races!
+
+        // println!("{}, {}", r1, r2);
+    }
+
+    #[test]
+    fn mutable_and_immutable_references() {
+        let mut s = String::from("hello");
+        let r1 = &s; // no problem
+        let r2 = &s; // no problem
+        let r3 = &mut s; // BIG PROBLEM
+        // cannot borrow `s` as mutable reference because it is also borrowed as immutable one
+
+        println!("{}, {}, and {}", r1, r2, r3);
     }
 }
