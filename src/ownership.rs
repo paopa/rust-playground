@@ -124,4 +124,46 @@ mod tests {
 
         a_string  // a_string is returned and moves out to the calling function
     }
+
+    // the ampersand (&) is a reference, which allows you to refer to some value WITHOUT taking ownership of it
+    #[test]
+    fn references_and_borrowing() {
+        let s1 = String::from("hello"); // s1 comes into scope
+
+        let len = calculate_length(&s1); // s1 is not moved into calculate_length, only a reference to s1 is passed
+        // the &s1 syntax lets us create a reference that refers to the value of s1 but does not own it,
+        // and we call having references as function parameters borrowing
+
+        println!("The length of '{}' is {}.", s1, len); // s1 is still valid here
+    }
+
+    fn calculate_length(s: &String) -> usize { // s is a reference to a String
+        s.len()
+    } // Here, s goes out of scope. But because it does not have ownership of what
+    // it refers to, nothing happens.
+
+    #[test]
+    fn mutable_references() {
+        let mut s = String::from("hello"); // `mut` makes variable mutable
+        change(&mut s); // we also need to make the reference mutable with `&mut`
+        // I think we could imagine that creating a mutable reference
+        // so, we can change the value of the variable s
+        // because this variable is mutable and the reference is also mutable
+    }
+
+    fn change(some_string: &mut String) {
+        some_string.push_str(", world");
+    }
+
+    #[test]
+    fn multiple_mutable_references() {
+        let mut s = String::from("hello");
+        let r1 = &mut s;
+        let r2 = &mut s; // This line will not compile
+        //  cannot borrow `s` as mutable more than once at a time
+        // the benefit of having this restriction is that Rust can prevent data races at compile time.
+        
+
+        println!("{}, {}", r1, r2);
+    }
 }
