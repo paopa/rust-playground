@@ -251,7 +251,7 @@ mod tests {
     fn split_first_word() {
         let mut s = String::from("hello world");
         let word = first_word(&s);
-        s.clear(); //  mutable borrow occurs here (the variable s is borrowed)
+        // s.clear(); //  mutable borrow occurs here (the variable s is borrowed)
         println!("{}", word);
     }
 
@@ -283,5 +283,34 @@ mod tests {
         // the type of s is a reference to a string slice, which is why the type of s is &str
         // This is also why string literals are immutable; &str is an immutable reference
         println!("{}", s);
+    }
+
+    #[test]
+    fn string_slices_as_parameters() {
+        let my_string = String::from("hello world");
+        let word = first_word_slice(&my_string[..]);
+        println!("{}", word);
+
+        let my_string_literal = "hello world";
+        let word = first_word_slice(&my_string_literal[..]);
+        println!("{}", word);
+
+        let word = first_word_slice(my_string_literal);
+        println!("{}", word);
+    }
+
+    // what is the difference between &str and String?
+    // The &str type is called a string slice, and it is a reference to part of a String, so it is immutable
+    // The String type, a heap-allocated string, is growable, and is a mutable, owned, UTF-8 encoded string type
+    // it is why using &str is better than using String in the first_word function
+    // because it can be used with both String and string literals, and it will work with both types via deref coercion
+    fn first_word_slice(s: &str) -> &str {
+        let bytes = s.as_bytes();
+        for (i, &item) in bytes.iter().enumerate() {
+            if item == b' ' {
+                return &s[0..i];
+            }
+        }
+        &s[..]
     }
 }
