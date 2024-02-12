@@ -276,4 +276,12 @@ mod tests {
     //     }
     //     s.len()
     // }
+
+    #[test]
+    fn string_literals_are_slices() {
+        let s = "Hello, world!";
+        // the type of s is a reference to a string slice, which is why the type of s is &str
+        // This is also why string literals are immutable; &str is an immutable reference
+        println!("{}", s);
+    }
 }
