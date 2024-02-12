@@ -230,4 +230,50 @@ mod tests {
         let s = String::from("hello");
         s
     }
+
+    #[test]
+    fn slice_type() {
+        let s = String::from("hello world");
+        let hello = &s[0..5]; // the first five bytes of the string
+        let world = &s[6..11]; // the sixth through 11th bytes of the string
+        println!("{} {}", hello, world);
+
+        let hello = &s[..5]; // it is the same as &s[0..5]
+        let world = &s[6..]; // it is the same as &s[6..len]
+        println!("{} {}", hello, world);
+
+        let len = s.len();
+        let slice = &s[..]; // it is the same as &s[0..len]
+        println!("{}", slice);
+    }
+
+    #[test]
+    fn split_first_word() {
+        let mut s = String::from("hello world");
+        let word = first_word(&s);
+        s.clear(); //  mutable borrow occurs here (the variable s is borrowed)
+        println!("{}", word);
+    }
+
+    fn first_word(s: &String) -> &str {
+        let bytes = s.as_bytes();
+        for (i, &item) in bytes.iter().enumerate() {
+            if item == b' ' {
+                return &s[0..i];
+            }
+        }
+        &s[..]
+    }
+
+    // we can use this function to get the index of the end of the first word
+    // but it can't ensure the string is valid, so it's better to use the slice type, I think.
+    // fn first_word(s: &String) -> usize {
+    //     let bytes = s.as_bytes();
+    //     for (i, &item) in bytes.iter().enumerate() {
+    //         if item == b' ' {
+    //             return i;
+    //         }
+    //     }
+    //     s.len()
+    // }
 }
