@@ -41,4 +41,34 @@ mod tests {
         // if the struct is mutable, we can change the value of the struct
         user.username = String::from("user2");
     }
+
+    #[test]
+    fn struct_update_syntax() {
+        let user1 = build_user(String::from("foo@gmail.com"), String::from("foo"));
+
+        println!("user1: {:?}", user1);
+
+        let email = String::from("foo_boo@gmail.com");
+        let user2 = User {
+            email, // we can't use email after this line, because the ownership of email has been moved to user2
+            ..user1
+        };
+        // println!("email: {}", email); // this line will cause an error
+
+        println!("email: {}", user1.email); // this line won't be an error, because we don't move the email field
+        println!("active: {}", user1.active); // this line won't be an error
+        println!("sign_in_count: {}", user1.sign_in_count); // this line won't be an error
+        // Both active and sign_in_count are types that implement the Copy trait,
+        // so the behavior we discussed in the “Stack-Only Data: Copy” section would apply.
+
+        // according to the above, we can use the user1 after the struct update syntax.
+        // but we can't use the username field, because it's not a type that implements the Copy trait
+        // and the ownership of the username field has been moved to user2
+        // println!("username: {}", user1.username); // this line will cause an error
+
+        // and also we can't use the user1 as a whole, because part of the fields have been moved to user2
+        // println!("user1: {:?}", user1); // this line will cause an error
+
+        println!("user2: {:?}", user2);
+    }
 }
