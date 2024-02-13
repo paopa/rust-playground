@@ -77,6 +77,10 @@ mod tests {
 
     #[derive(Debug)]
     struct Demo(i32, String, bool);
+    // why we use String instead of &str?
+    // because we want to own the data, not just borrow it
+    // if we use &str, we need to specify the lifetime of the reference,
+    // so it will occur the lifetime issue during the compile time.
 
     #[test]
     fn tuple_struct() {
