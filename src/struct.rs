@@ -101,4 +101,16 @@ mod tests {
     fn tuple_struct_as_parameter(color: Color) {
         println!("print the color {:?} in the function", color);
     }
+
+    // A unit-like struct is a way of using the tuple struct to create a type that is an empty tuple, (),
+    // which can be useful in situations in which you need to implement a trait on some type
+    // but don’t have any data that you want to store in the type itself.
+    #[derive(Debug)]
+    struct AlwaysEqual;
+
+    #[test]
+    fn unit_like_struct() {
+        let always_equal = AlwaysEqual;
+        println!("always_equal: {:?}", always_equal);
+    }
 }
