@@ -71,4 +71,34 @@ mod tests {
 
         println!("user2: {:?}", user2);
     }
+
+    #[derive(Debug)]
+    struct Color(i32, i32, i32);
+
+    #[derive(Debug)]
+    struct Demo(i32, String, bool);
+
+    #[test]
+    fn tuple_struct() {
+        let black = Color(0, 1, 4);
+        println!("black: {:?}", black);
+
+        // we can access the value of the tuple struct by using the index
+        println!("{}", black.0);
+        println!("{}", black.1);
+        println!("{}", black.2);
+
+        tuple_struct_as_parameter(black);
+
+        let demo = Demo(1, String::from("hello world"), true);
+        println!("demo: {:?}", demo);
+
+        println!("{}", demo.0);
+        println!("{}", demo.1);
+        println!("{}", demo.2);
+    }
+
+    fn tuple_struct_as_parameter(color: Color) {
+        println!("print the color {:?} in the function", color);
+    }
 }
