@@ -72,6 +72,20 @@ impl Rectangle {
     fn can_hold(&self, other: &Rectangle) -> bool {
         self.width > other.width && self.height > other.height
     }
+
+    // what is the difference between associated functions and methods?
+    // Associated functions are functions that are associated with the struct,and don’t take a self parameter.
+    // They’re still functions, not methods, because they don’t have an instance of the struct to work with.
+    // so, associated functions are often used for constructors that will return a new instance of the struct.
+    fn square(size: u32) -> Self {
+        Self { width: size, height: size }
+    }
+
+    // is this an associated function?
+    // I think it is, because it doesn't take a self parameter. and be defined in the impl block of the struct.
+    fn test(size: u32) -> u32 {
+        size
+    }
 }
 
 mod tests {
@@ -121,5 +135,15 @@ mod tests {
         println!("rect1 can hold rect2? {}", rect1.can_hold(&rect2));
         assert!(!rect1.can_hold(&rect3));
         println!("rect1 can hold rect3? {}", rect1.can_hold(&rect3));
+    }
+
+    #[test]
+    fn test_associated_functions() {
+        let square = Rectangle::square(3);
+        assert_eq!(square.width, 3);
+        assert_eq!(square.height, 3);
+
+        let size = Rectangle::test(3);
+        assert_eq!(size, 3);
     }
 }
