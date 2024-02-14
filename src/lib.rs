@@ -4,3 +4,4 @@ mod unit_test;
 // https://doc.rust-lang.org/rust-by-example/compatibility/raw_identifiers.html
 mod r#struct;
 mod shadowing;
+mod rectangles;
