@@ -88,6 +88,12 @@ impl Rectangle {
     }
 }
 
+impl Rectangle {
+    fn hello(&self) -> String {
+        "hello Rectangle".to_string()
+    }
+}
+
 mod tests {
     use super::*;
 
@@ -145,5 +151,11 @@ mod tests {
 
         let size = Rectangle::test(3);
         assert_eq!(size, 3);
+    }
+
+    #[test]
+    fn test_multiple_impl_blocks() {
+        let rect1 = Rectangle { width: 30, height: 50 };
+        assert_eq!(rect1.hello(), "hello Rectangle");
     }
 }
