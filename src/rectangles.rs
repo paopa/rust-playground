@@ -31,6 +31,23 @@ struct Rectangle {
     height: u32,
 }
 
+fn println_rectangle_struct() {
+    let rect1 = Rectangle { width: 30, height: 50 };
+
+    println!(
+        "The area of the rectangle is {} square pixels.",
+        area_struct(&rect1)
+    );
+    println!("rect1 is {:#?}", rect1);
+
+    let rect2 = Rectangle { width: dbg!(10), height: 40 };
+    dbg!(&rect2);
+}
+
+fn area_struct(rectangle: &Rectangle) -> u32 {
+    rectangle.width * rectangle.height
+}
+
 impl Rectangle {
     // the &self is actually shorthand for &self: &Self,
     // where Self is the type of the struct the method is being defined on.
@@ -51,23 +68,10 @@ impl Rectangle {
         // this method takes ownership of the instance and does something that consumes the instance.
         // after calling this method, the instance is no longer valid.
     }
-}
 
-fn println_rectangle_struct() {
-    let rect1 = Rectangle { width: 30, height: 50 };
-
-    println!(
-        "The area of the rectangle is {} square pixels.",
-        area_struct(&rect1)
-    );
-    println!("rect1 is {:#?}", rect1);
-
-    let rect2 = Rectangle { width: dbg!(10), height: 40 };
-    dbg!(&rect2);
-}
-
-fn area_struct(rectangle: &Rectangle) -> u32 {
-    rectangle.width * rectangle.height
+    fn can_hold(&self, other: &Rectangle) -> bool {
+        self.width > other.width && self.height > other.height
+    }
 }
 
 mod tests {
@@ -105,5 +109,17 @@ mod tests {
 
         rect1.consume(); // it moves the ownership of rect1 to the consume method
         // println!("rect1 is {:#?}", rect1); // this will occur a compile error
+    }
+
+    #[test]
+    fn test_can_hold() {
+        let rect1 = Rectangle { width: 30, height: 50 };
+        let rect2 = Rectangle { width: 10, height: 40 };
+        let rect3 = Rectangle { width: 60, height: 45 };
+
+        assert!(rect1.can_hold(&rect2));
+        println!("rect1 can hold rect2? {}", rect1.can_hold(&rect2));
+        assert!(!rect1.can_hold(&rect3));
+        println!("rect1 can hold rect3? {}", rect1.can_hold(&rect3));
     }
 }
