@@ -31,6 +31,28 @@ struct Rectangle {
     height: u32,
 }
 
+impl Rectangle {
+    // the &self is actually shorthand for &self: &Self,
+    // where Self is the type of the struct the method is being defined on.
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+
+    // if we wanted to change the instance that we’ve called the method on as part of what the method does,
+    // we’d use `&mut self` as the first parameter.
+    fn width(&self) -> bool {
+        self.width > 0
+    }
+
+    // having a method that takes ownership of the instance by using just `self` as the first parameter is rare;
+    // this technique is usually used when the method transforms `self` into something else,
+    // and you want to prevent the caller from using the original instance after the transformation.
+    fn consume(self) {
+        // this method takes ownership of the instance and does something that consumes the instance.
+        // after calling this method, the instance is no longer valid.
+    }
+}
+
 fn println_rectangle_struct() {
     let rect1 = Rectangle { width: 30, height: 50 };
 
@@ -68,5 +90,20 @@ mod tests {
         let rect1 = Rectangle { width: 30, height: 50 };
         assert_eq!(area_struct(&rect1), 1500);
         println_rectangle_struct();
+    }
+
+    #[test]
+    fn test_area_method() {
+        let rect1 = Rectangle { width: 30, height: 50 };
+        assert_eq!(rect1.area(), 1500);
+
+        if rect1.width() {
+            println!("rect1 has a width");
+        }
+
+        println!("rect1 is {:#?}", rect1);
+
+        rect1.consume(); // it moves the ownership of rect1 to the consume method
+        // println!("rect1 is {:#?}", rect1); // this will occur a compile error
     }
 }
