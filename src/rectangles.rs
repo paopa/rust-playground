@@ -73,16 +73,18 @@ impl Rectangle {
         self.width > other.width && self.height > other.height
     }
 
-    // what is the difference between associated functions and methods?
-    // Associated functions are functions that are associated with the struct,and don’t take a self parameter.
-    // They’re still functions, not methods, because they don’t have an instance of the struct to work with.
-    // so, associated functions are often used for constructors that will return a new instance of the struct.
+    // all functions in the impl block are associated functions.
+    // and methods are a kind of associated function as well.
+    // but method includes the self parameters(&self, &mut self, self).
+    // so we can imagine that methods are a subset of associated functions.
+    // or if we set the `self` related parameters in an associated function, it becomes a method.
+
+    // associated functions that aren't methods are often used for constructors ,
+    // which will return a new instance of the struct.
     fn square(size: u32) -> Self {
         Self { width: size, height: size }
     }
 
-    // is this an associated function?
-    // I think it is, because it doesn't take a self parameter. and be defined in the impl block of the struct.
     fn test(size: u32) -> u32 {
         size
     }
