@@ -5,3 +5,4 @@ mod unit_test;
 mod r#struct;
 mod shadowing;
 mod rectangles;
+mod enums;
