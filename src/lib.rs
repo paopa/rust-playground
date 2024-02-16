@@ -6,3 +6,4 @@ mod r#struct;
 mod shadowing;
 mod rectangles;
 mod enums;
+mod option;
