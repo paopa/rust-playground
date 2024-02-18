@@ -28,6 +28,13 @@ fn value_in_cents(coin: Coin) -> u8 {
     }
 }
 
+fn plus_one(x: Option<i32>) -> Option<i32> {
+    match x {
+        None => None,
+        Some(i) => Some(i + 1)
+    }
+}
+
 
 mod tests {
     use super::*;
@@ -38,5 +45,11 @@ mod tests {
         assert_eq!(value_in_cents(Coin::Nickel), 5);
         assert_eq!(value_in_cents(Coin::Dime), 10);
         assert_eq!(value_in_cents(Coin::Quarter(UsState::Alabama)), 25);
+    }
+
+    #[test]
+    fn test_plus_one() {
+        assert_eq!(plus_one(Some(5)), Some(6));
+        assert_eq!(plus_one(None), None);
     }
 }
