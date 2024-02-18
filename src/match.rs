@@ -36,6 +36,27 @@ fn plus_one(x: Option<i32>) -> Option<i32> {
     }
 }
 
+fn catch_all_bind_var(num: u8) {
+    match num {
+        1 => println!("one"),
+        3 => println!("three"),
+        5 => println!("five"),
+        7 => println!("seven"),
+        other => println!("not match: {}", other), // other is a catch-all, and will put the value in the variable
+    }
+}
+
+fn catch_all_dont_bind_var(num: u8) {
+    match num {
+        1 => println!("one"),
+        3 => println!("three"),
+        5 => println!("five"),
+        7 => println!("seven"),
+        _ => println!("not match"), // _ is a catch-all, but it doesn't put the value in a variable.
+        // so it's used when we don't care about the value. and if we use _ in the last arm,
+        // we will occur a compile error.
+    }
+}
 
 mod tests {
     use super::*;
@@ -52,5 +73,23 @@ mod tests {
     fn test_plus_one() {
         assert_eq!(plus_one(Some(5)), Some(6));
         assert_eq!(plus_one(None), None);
+    }
+
+    #[test]
+    fn test_catch_all_bind_var() {
+        catch_all_bind_var(1);
+        catch_all_bind_var(3);
+        catch_all_bind_var(5);
+        catch_all_bind_var(7);
+        catch_all_bind_var(9);
+    }
+
+    #[test]
+    fn test_catch_all_dont_bind_var() {
+        catch_all_dont_bind_var(1);
+        catch_all_dont_bind_var(3);
+        catch_all_dont_bind_var(5);
+        catch_all_dont_bind_var(7);
+        catch_all_dont_bind_var(9);
     }
 }
