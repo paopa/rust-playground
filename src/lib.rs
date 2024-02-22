@@ -12,7 +12,21 @@ mod garden {
     fn plant() {
         println!("planting a tree");
     }
+
+    // this is a submodule of the garden module
+    // the compiler will look for the submodule's code within the directory named
+    // for the parent module in these places:
+    // 1. inline, within curly brackets that replace the semicolon following `mod submodule_name`
+    mod vegetables {
+        pub fn plant() {
+            println!("planting a vegetable");
+        }
+    }
+    // 2. in the file src/module/submodule_name.rs such as src/garden_bar/vegetables.rs
+
+    // 3. in the file src/module/submodule_name such as src/garden_bar/vegetables_bar/mod.rs
 }
+
 // 2. in the file src/module_name.rs
 mod garden_foo;
 // 3. in the file src/module_name/mod.rs
