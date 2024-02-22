@@ -11,3 +11,4 @@ mod r#match;
 mod functions;
 mod destructuring;
 mod if_let;
+mod comment;
