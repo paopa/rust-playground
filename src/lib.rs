@@ -30,7 +30,7 @@ mod garden {
 // 2. in the file src/module_name.rs
 mod garden_foo;
 // 3. in the file src/module_name/mod.rs
-mod garden_bar;
+pub mod garden_bar;
 
 mod ownership;
 mod unit_test;

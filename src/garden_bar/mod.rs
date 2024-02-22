@@ -1,5 +1,5 @@
 mod vegetables_bar;
-mod vegetables;
+pub mod vegetables;
 
 fn plant() {
     println!("planting a tree bar");
