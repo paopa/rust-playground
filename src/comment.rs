@@ -12,9 +12,7 @@
 /// let x = 5;
 /// let y = 6;
 /// ```
+fn foo() {
+    println!("foo");
+}
 
-
-//! This is a documentation comment as well, to comment containing items
-//! (e.g. crates, modules, functions). instead of the items following it.
-//! Commonly used inside the crate root file (lib.rs) or modules root file (mod.rs)
-//!

@@ -1,3 +1,8 @@
+//! This is a documentation comment as well, to comment containing items
+//! (e.g. crates, modules, functions). instead of the items following it.
+//! Commonly used inside the crate root file (lib.rs) or modules root file (mod.rs)
+//! more documentation comment refer to comment.rs
+
 // this is the root file of the library crate, so it doesn't need a main function
 // when the compiler compiles the library crate, it will look for the lib.rs file(usually) and compile it
 
