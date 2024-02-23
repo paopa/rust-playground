@@ -12,17 +12,30 @@ mod front_of_house {
     }
 }
 
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
+pub fn eat_at_restaurant() {
+    // Absolute path
+    crate::front_of_house::hosting::add_to_waitlist();
+
+    // Relative path
+    front_of_house::hosting::add_to_waitlist();
 }
 
-#[cfg(test)]
+fn deliver_order() {}
+
+mod back_of_house {
+    fn fix_incorrect_order() {
+        cook_order();
+        super::deliver_order();
+    }
+
+    fn cook_order() {}
+}
+
 mod tests {
-    use super::*;
+    use crate::eat_at_restaurant;
 
     #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+    fn test() {
+        eat_at_restaurant();
     }
 }
