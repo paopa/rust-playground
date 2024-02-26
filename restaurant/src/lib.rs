@@ -20,6 +20,36 @@ pub fn eat_at_restaurant() {
     front_of_house::hosting::add_to_waitlist();
 }
 
+use crate::front_of_house::hosting;
+
+pub fn eat_at_restaurant_short() {
+    // we can use `use` keyword to bring the function into scope
+    hosting::add_to_waitlist();
+}
+
+mod customer {
+    // in this case, we have to use `super` keyword to go up one module
+    // and then to direct to the `front_of_house` module. we can imagine
+    // this as a file system.
+    use super::front_of_house::hosting;
+
+    pub fn eat_at_restaurant() {
+        hosting::add_to_waitlist();
+    }
+}
+
+use std::fmt;
+use std::io;
+
+fn function1() -> fmt::Result {
+    Ok(())
+}
+
+fn function2() -> io::Result<()> {
+    Ok(())
+}
+
+
 fn deliver_order() {}
 
 mod back_of_house {
