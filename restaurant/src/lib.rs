@@ -1,4 +1,6 @@
 mod external;
+mod customer;
+mod fun;
 
 mod front_of_house {
     pub mod hosting {
@@ -31,16 +33,6 @@ pub fn eat_at_restaurant_short() {
     hosting::add_to_waitlist();
 }
 
-mod customer {
-    // in this case, we have to use `super` keyword to go up one module
-    // and then to direct to the `front_of_house` module. we can imagine
-    // this as a file system.
-    use super::front_of_house::hosting;
-
-    pub fn eat_at_restaurant() {
-        hosting::add_to_waitlist();
-    }
-}
 
 use std::fmt;
 use std::io;
@@ -53,19 +45,6 @@ fn function2() -> io::Result<()> {
     Ok(())
 }
 
-mod fun {
-    use std::fmt::Result;
-    // we can use `as` keyword to rename the imported item
-    use std::io::Result as IoResult;
-
-    fn function1() -> Result {
-        Ok(())
-    }
-
-    fn function2() -> IoResult<()> {
-        Ok(())
-    }
-}
 
 fn deliver_order() {}
 
@@ -130,7 +109,7 @@ mod nest_path {
     // In summary, use std::io; brings the io module into scope, but not its contents.
     // If you want to use a specific item from the io module,
     // you need to bring it into scope explicitly with use std::io::Write;.
-   
+
     // use std::io;
     // use std::io::Write;
     use std::io::{self, Write};
