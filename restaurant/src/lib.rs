@@ -125,3 +125,13 @@ mod tests {
         let order2 = back_of_house::Appetizer::Salad;
     }
 }
+
+mod nest_path {
+    // In summary, use std::io; brings the io module into scope, but not its contents.
+    // If you want to use a specific item from the io module,
+    // you need to bring it into scope explicitly with use std::io::Write;.
+   
+    // use std::io;
+    // use std::io::Write;
+    use std::io::{self, Write};
+}
