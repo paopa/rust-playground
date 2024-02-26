@@ -1,3 +1,5 @@
+mod external;
+
 mod front_of_house {
     pub mod hosting {
         pub fn add_to_waitlist() {}
@@ -20,7 +22,9 @@ pub fn eat_at_restaurant() {
     front_of_house::hosting::add_to_waitlist();
 }
 
-use crate::front_of_house::hosting;
+// the `pub` keyword in the `use` statement makes the function public
+// so that it can be used outside of the module
+pub use crate::front_of_house::hosting;
 
 pub fn eat_at_restaurant_short() {
     // we can use `use` keyword to bring the function into scope
