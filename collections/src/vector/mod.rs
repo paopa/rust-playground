@@ -37,4 +37,21 @@ mod tests {
         println!("The first element is: {}", first);
     }
 
+    #[test]
+    fn test_vector_iter() {
+        let v = vec![100, 32, 57];
+        for i in &v {
+            println!("{}", i);
+        }
+    }
+
+    #[test]
+    fn test_vector_iter_mut() {
+        let mut v = vec![100, 32, 57];
+        for i in &mut v {
+            // dereference i to get the value it refers to, and then add 50 to that value
+            *i += 50;
+        }
+        println!("{:?}", v);
+    }
 }
