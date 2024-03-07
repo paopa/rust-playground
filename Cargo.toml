@@ -1,4 +1,4 @@
-workspace = { members = ["restaurant"] }
+workspace = { members = [ "collections","restaurant"] }
 [package]
 name = "rust-playground"
 version = "0.1.0"
