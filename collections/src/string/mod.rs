@@ -18,6 +18,7 @@ mod tests {
         let s = String::from("hello");
         assert_eq!(s, "hello");
     }
+
     #[test]
     fn test_update_string() {
         let mut s = String::from("foo");
@@ -33,5 +34,30 @@ mod tests {
         let mut s = String::from("lo");
         s.push('l');
         assert_eq!(s, "lol");
+    }
+
+    #[test]
+    fn test_concatenate_string() {
+        let s1 = String::from("Hello, ");
+        let s2 = String::from("world!");
+        let s3 = s1 + &s2;
+        // s1 has been moved here and can no longer be used
+        // the `+` operator uses the `add` method, which takes ownership of `s1` and does not return it
+        assert_eq!(s3, "Hello, world!");
+        assert_eq!(s2, "world!");
+
+        let s1 = String::from("tic");
+        let s2 = String::from("tac");
+        let s3 = String::from("toe");
+
+        let s = s1 + "-" + &s2 + "-" + &s3;
+        assert_eq!(s, "tic-tac-toe");
+
+        let s1 = String::from("tic");
+        let s2 = String::from("tac");
+        let s3 = String::from("toe");
+
+        let s = format!("{s1}-{s2}-{s3}");
+        assert_eq!(s, "tic-tac-toe");
     }
 }
