@@ -95,4 +95,17 @@ mod tests {
         // so that each program can choose the interpretation it needs, no matter what human language the data is in.
 
     }
+
+    #[test]
+    fn test_string_slices() {
+        let s = String::from("hello world");
+        let hello = &s[0..5];
+        assert_eq!(hello, "hello");
+
+        let world = &s[6..11];
+        assert_eq!(world, "world");
+
+        let hello = &s[0..=4];
+        assert_eq!(hello, "hello");
+    }
 }
