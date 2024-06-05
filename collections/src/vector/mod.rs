@@ -54,4 +54,12 @@ mod tests {
         }
         println!("{:?}", v);
     }
+
+    #[test]
+    fn test_vector_pop_unwrap() {
+        let mut v = vec![1, 2, 3, 4, 5];
+        let last = v.pop().unwrap(); // unwrap is used here because pop returns an Option
+        println!("The last element is: {}", last);
+        println!("{:?}", v);
+    }
 }
